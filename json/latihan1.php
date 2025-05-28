@@ -1,18 +1,18 @@
 <?php
 
-$db_mahasiswa = [
-    [
-        "nama" => "Amalia Fahri Siregar",
-        "nim" => "2217020029",
-        "email" => "amaliafahri08@gmail.com"
-    ], 
-    [
-        "nama" => "ratih",
-        "nim" => "2215020045",
-        "email" => "ratihelfitri@gmail.com"
+// $db_mahasiswa = [
+//     [
+//         "nama" => "Amalia",
+//         "nim" => "2217020029",
+//         "email" => "amaliafahri08@gmail.com"
+//     ], 
+//     [
+//         "nama" => "ratih",
+//         "nim" => "2215020045",
+//         "email" => "ratihelfitri@gmail.com"
 
-    ]
-]
+//     ]
+// ]
 $dbh = new PDO ('mysql:host=localhost;dbname=db_mahasiswa','root','');
 $db = $dbh->prepare('SELECT * FROM mahasiswa');
 $db->execute();
