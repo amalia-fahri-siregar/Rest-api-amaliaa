@@ -1,7 +1,5 @@
 [
     {
-
-
         "nama": "Amalia",
         "umur" : 21,
         "nim" : "2217020029",
@@ -11,12 +9,11 @@
             "singing"
         ],
         "pembimbing": {
-        "pembimbing1": "Raju Wandira",
-        "pembimbing2": "Erik Doang"
+            "pembimbing1": "Raju Wandira",
+            "pembimbing2": "Erik Doang"
         }
     },
     {
-
         "nama": "Fahri",
         "umur" : 21,
         "nim" : "2217020029",
@@ -26,9 +23,8 @@
             "hiking"
         ],
         "pembimbing": {
-        "pembimbing1": "Doddy Ferdiansyah",
-        "pembimbing2": "Erik Doang"
+            "pembimbing1": "Doddy Ferdiansyah",
+            "pembimbing2": "Erik Doang"
         }  
     }
-    
-    ]
+]
