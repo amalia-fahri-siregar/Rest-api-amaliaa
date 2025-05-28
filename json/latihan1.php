@@ -7,7 +7,7 @@
 //         "email" => "amaliafahri08@gmail.com"
 //     ], 
 //     [
-//         "nama" => "ratih",
+//         "nama" => "ratah",
 //         "nim" => "2215020045",
 //         "email" => "ratihelfitri@gmail.com"
 
