@@ -1,0 +1,34 @@
+[
+    {
+
+
+        "nama": "Amalia",
+        "umur" : 21,
+        "nim" : "2217020029",
+        "lulus": true,
+        "hobby": [
+            "Travelling",
+            "hiking"
+        ],
+        "pembimbing": {
+        "pembimbing1": "Doddy Ferdiansyah",
+        "pembimbing2": "Erik Doang"
+        }
+    },
+    {
+
+        "nama": "Fahri",
+        "umur" : 21,
+        "nim" : "2217020029",
+        "lulus": true,
+        "hobby": [
+            "tavelling",
+            "hiking"
+        ],
+        "pembimbing": {
+        "pembimbing1": "Doddy Ferdiansyah",
+        "pembimbing2": "Erik Doang"
+        }  
+    }
+    
+    ]
