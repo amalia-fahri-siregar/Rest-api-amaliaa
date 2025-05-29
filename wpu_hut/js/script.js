@@ -24,6 +24,13 @@ $('.nav-link').on('click', function () {
     let kategori = $(this).html();
     $('h1').html(kategori);
 
+    if (kategori =='All Menu') {
+        tampilkanSemuaMenu();
+        return;
+
+        
+    }
+
     $.getJSON('data/pizza.json', function (data) {
         let menu = data.menu;
         let content = '';
@@ -45,7 +52,6 @@ $('.nav-link').on('click', function () {
             }
         });
 
-        // tampilkan hasil filter ke dalam #daftar-menu
         $('#daftar-menu').html(content);
     });
 });
