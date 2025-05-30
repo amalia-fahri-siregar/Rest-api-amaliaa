@@ -1,12 +1,13 @@
-$('#search-button').on('click', function(){
-
+function searchMovie() {
+   $('#movie-list').html('');
+    
     $.ajax({
-        url:'http://omdbapi.com',
+        url:'https://omdbapi.com',
         type: 'get',
         dataType:'json',
         data: {
            'apikey' : 'cf6b549',
-           's': $('#search-input').val()
+            s: $('#search-input').val()
         },
         success: function (result) {
             if (result.Response == "True") {
@@ -16,16 +17,18 @@ $('#search-button').on('click', function(){
                     $('#movie-list').append(`
                         <div class="col-md-4">
                             <div class="card mb-3">
-                                <img src="`+ data.Poster +`" class="card-img-top" alt="...">
+                                <img src="${data.Poster}" class="card-img-top" alt="${data.Title}">
                                 <div class="card-body">
-                                <h5 class="card-title"> `+ data.Title +`</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">`+ data.Year +`</h6>
-                                <a href="#" class="card-link">See Detail</a>
+                                <h5 class="card-title">${data.Title}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">${data.Year}</h6>
+                                <a href="#" class="card-link see=detail" data-toggle="modal" data-target="#exampleModal" data-id="${data.data.imdbID}">See Detail</a>
                                 </div>
                             </div>
                         </div>
                     `);
                 });
+
+                $('#search-input').val('');
 
 
             } else {
@@ -36,6 +39,52 @@ $('#search-button').on('click', function(){
                 `)
             }
         }
-    });
+    }); 
+}
 
+$('#search-button').on('click', function(){
+    searchMovie();
+
+});
+
+$('#search-input').on('keyup', function(e) {
+    if (e.which === 13) {
+        searchMovie();
+    }
+});
+
+// Ketika link See Detail diklik
+$('#movie-list').on('click', '.see-detail', function () {
+  $.ajax({
+    url: 'https://www.omdbapi.com',
+    type: 'get',
+    dataType: 'json',
+    data: {
+      'apikey': 'cf6b549',
+      'i': $(this).data('id')
+    },
+    success: function (movie) {
+      if (movie.Response === "True") {
+        $('#exampleModalLabel').text(movie.Title);
+        $('.modal-body').html(`
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4">
+                <img src="${movie.Poster}" class="img-fluid">
+              </div>
+              <div class="col-md-8">
+                <ul class="list-group">
+                  <li class="list-group-item"><strong>Released:</strong> ${movie.Released}</li>
+                  <li class="list-group-item"><strong>Genre:</strong> ${movie.Genre}</li>
+                  <li class="list-group-item"><strong>Director:</strong> ${movie.Director}</li>
+                  <li class="list-group-item"><strong>Actors:</strong> ${movie.Actors}</li>
+                  <li class="list-group-item"><strong>Plot:</strong> ${movie.Plot}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        `);
+      }
+    }
+  });
 });
