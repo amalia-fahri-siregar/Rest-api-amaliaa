@@ -69,9 +69,9 @@
     </section>
 
     <!--Youtube & IG-->
-    <section class="social" id="social">
+    <section class="social bg-light" id="social">
       <div class="container">
-        <div class="row">
+        <div class="row pt-4 mb-4">
           <div class="col text-center">
             <h2> Social Media</h2>
           </div>
@@ -150,7 +150,7 @@
 
 
     <!-- Contact -->
-    <section class="contact" id="contact">
+    <section class="contact bg-light" id="contact">
       <div class="container">
         <div class="row pt-4 mb-4">
           <div class="col text-center">
