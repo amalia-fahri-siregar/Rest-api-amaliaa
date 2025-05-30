@@ -34,7 +34,7 @@ function searchMovie() {
             } else {
                 $('#movie-list').html(`
                     <div class="col">
-                        <h1 class="text-center">`+ result.Error +`</h1>
+                        <h1 class="text-center">+ result.Error +</h1>
                     </div>
                 `)
             }

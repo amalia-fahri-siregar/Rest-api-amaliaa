@@ -68,7 +68,7 @@
       </div>
     </section>
 
-    <!--Youtube & IG-->
+<!--Youtube & IG-->
 <section class="social bg-light" id="social">
   <div class="container">
     <div class="row pt-4 mb-4">
@@ -90,7 +90,7 @@
         <div class="row mt-3 pb-3">
           <div class="col">
           <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T6buUUSPfyk?rel=0" allowfullscreen></iframe>
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/-MYyhJXHdyw?rel=0" allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -105,16 +105,28 @@
             <p>4000 Followers</p>
           </div>
       </div>
-      <div class="row">
-        <div class="col">
+
+      <div class="container">
+      <div class="row mt-3 pb-3 justify-content-center">
+        <div class="col-md-4 text-center">
           <div class="ig-thumbnail">
-            <img src="img/thumbs/1.png">
+            <img src="img/thumbs/1.png" class="img-fluid rounded" style="max-width: 150px;">
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="ig-thumbnail">
+            <img src="img/thumbs/2.png" class="img-fluid rounded" style="max-width: 150px;">
+        </div>
+      </div>
+        <div class="col-md-4 text-center">
+          <div class="ig-thumbnail">
+            <img src="img/thumbs/3.png" class="img-fluid rounded" style="max-width: 150px;">
           </div>
         </div>
       </div>
-    </div>
   </div>
 </section>
+
 
 
 
