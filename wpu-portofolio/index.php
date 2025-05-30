@@ -8,7 +8,11 @@ function get_CURL($url) {
     return json_decode($result, true);
 }
 
-$result = get_CURL('https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCcPgFqxw1Rqf2jfgOMnzisA&key=AIzaSyDxJi-Uh0odi2cVi4ThQToIrVdc0hfNlVs');
+// YouTube API
+$apiKey = 'AIzaSyDxJi-Uh0odi2cVi4ThQToIrVdc0hfNlVs';
+$channelId = 'UCcPgFqxw1Rqf2jfgOMnzisA';
+
+$result = get_CURL("https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id={$channelId}&key={$apiKey}");
 
 if (isset($result['items'][0])) {
     $youtubeProfilePic = $result['items'][0]['snippet']['thumbnails']['medium']['url'];
@@ -20,10 +24,37 @@ if (isset($result['items'][0])) {
     $subscriber = '0';
 }
 
-$urlLatestVideo = 'https://www.googleapis.com/youtube/v3/search?key=AIzaSyDxJi-Uh0odi2cVi4ThQToIrVdc0hfNlVs&channelId=UCcPgFqxw1Rqf2jfgOMnzisA&maxResults=1&order=date&part=snippet';
-$result = get_CURL($urlLatestVideo);
-$latestVideoId = $result['items'][0]['id']['videoId'];
+// Video terbaru
+$urlLatestVideo = "https://www.googleapis.com/youtube/v3/search?key={$apiKey}&channelId={$channelId}&maxResults=1&order=date&part=snippet";
+$resultVideo = get_CURL($urlLatestVideo);
+$latestVideoId = isset($resultVideo['items'][0]['id']['videoId']) ? $resultVideo['items'][0]['id']['videoId'] : '';
+
+// Instagram API
+$clientId = '8993486724087218';
+$accessToken = 'IGAAREn9ZCBTZCxBZAE5kMWhGMUdtTTl4VTJOY3R1cEVYcEx0QXdxTU40UF85eVRlV2ZAub2p4SXByZAkIwakt2dlo3M1ZA5WndRQk9aNFNWTjBvYm0zUHBNcERNSFNVOFkzNGwzMUg0ajIwcVJsQW5Pa0JSR0pZAeUhvQ016SXhadUlBRQZDZD';
+
+$result2 = get_CURL("https://graph.instagram.com/me?fields=username,profile_picture_url,followers_count&access_token={$accessToken}");
+
+$usernameIG = isset($result2['username']) ? $result2['username'] : 'Unknown';
+$profilePictureIG = isset($result2['profile_picture_url']) ? $result2['profile_picture_url'] : 'img/default.png';
+$followersIG = isset($result2['followers_count']) ? $result2['followers_count'] : 0;
+
+// Latest IG photos
+$photos = [];
+$result = get_CURL("https://graph.instagram.com/me/media?fields=id,media_type,media_url&access_token={$accessToken}&limit=5");
+
+if (isset($result['data'])) {
+    foreach ($result['data'] as $item) {
+        if ($item['media_type'] === 'IMAGE' || $item['media_type'] === 'CAROUSEL_ALBUM') {
+            $photos[] = $item['media_url'];
+        }
+    }
+}
+
+
+
 ?>
+
 
 
 <!doctype html>
@@ -113,6 +144,7 @@ $latestVideoId = $result['items'][0]['id']['videoId'];
           <div class="col-md-8">
             <h5><?= $channelName; ?></h5>
             <p><?= $subscriber; ?>Subscribers</p>
+            <div class="g-ytsubscribe" data-channelid="UCcPgFqxw1Rqf2jfgOMnzisA" data-layout="full" data-theme="dark" data-count="default"></div>
           </div>
         </div>
         <div class="row mt-3 pb-3">
@@ -126,30 +158,22 @@ $latestVideoId = $result['items'][0]['id']['videoId'];
       <div class="col-md-5">
         <div class="row">
           <div class="col-md-4">
-            <img src="img/profile1.png" width="150" class="rounded-circle img-thumbnail">
+            <img src="<?= $profilePictureIG; ?>" width="150" class="rounded-circle img-thumbnail">
             </div>
             <div class="col-md-8">
-            <h5>chocolateros___</h5>
-            <p>4000 Followers</p>
+            <h5><?= $usernameIG; ?></h5>
+            <p><?= $followersIG; ?> Followers</p>
           </div>
       </div>
 
       <div class="container">
       <div class="row mt-3 pb-3 justify-content-center">
         <div class="col-md-4 text-center">
+          <?php foreach($photos as $photo) : ?>
           <div class="ig-thumbnail">
-            <img src="img/thumbs/1.png" class="img-fluid rounded" style="max-width: 150px;">
+            <img src="<?= $photo; ?>" class="img-fluid rounded" style="max-width: 150px;">
           </div>
-        </div>
-        <div class="col-md-4 text-center">
-          <div class="ig-thumbnail">
-            <img src="img/thumbs/2.png" class="img-fluid rounded" style="max-width: 150px;">
-        </div>
-      </div>
-        <div class="col-md-4 text-center">
-          <div class="ig-thumbnail">
-            <img src="img/thumbs/3.png" class="img-fluid rounded" style="max-width: 150px;">
-          </div>
+          <?php endforeach; ?>
         </div>
       </div>
   </div>
@@ -305,5 +329,6 @@ $latestVideoId = $result['items'][0]['id']['videoId'];
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
   </body>
 </html>
