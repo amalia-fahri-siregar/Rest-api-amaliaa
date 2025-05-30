@@ -69,15 +69,53 @@
     </section>
 
     <!--Youtube & IG-->
-    <section class="social bg-light" id="social">
-      <div class="container">
-        <div class="row pt-4 mb-4">
-          <div class="col text-center">
-            <h2> Social Media</h2>
+<section class="social bg-light" id="social">
+  <div class="container">
+    <div class="row pt-4 mb-4">
+      <div class="col text-center">
+        <h2>Social Media</h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="img/profile1.png" width="150" class="rounded-circle img-thumbnail">
+          </div>
+          <div class="col-md-8">
+            <h5>WebProgrammingLia</h5>
+            <p>7000 Subscribers</p>
+          </div>
+        </div>
+        <div class="row mt-3 pb-3">
+          <div class="col">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/T6buUUSPfyk?rel=0" allowfullscreen></iframe>
           </div>
         </div>
       </div>
-    </selection>
+    </div>
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="img/profile1.png" width="150" class="rounded-circle img-thumbnail">
+            </div>
+            <div class="col-md-8">
+            <h5>chocolateros___</h5>
+            <p>4000 Followers</p>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="ig-thumbnail">
+            <img src="img/thumbs/1.png">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
     <!-- Portfolio -->
